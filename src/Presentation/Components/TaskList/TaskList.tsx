@@ -9,6 +9,10 @@ import styles from './styles';
 import EmptyTaskList from '../EmptyTaskList/EmptyTaskList';
 import { useDispatch } from 'react-redux';
 import TaskSlice from '../../../Store/Slice/TaskSlice';
+import { useNavigation } from '@react-navigation/native';
+import { SCREEN_NAME } from '../../../Enum/Screens';
+import { HomeStackParamList } from '../../../@Types/navigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 interface TaskListProps {
   data: Task[];
@@ -16,6 +20,8 @@ interface TaskListProps {
 
 const TaskList: React.FC<TaskListProps> = props => {
   const dispatch = useDispatch();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<HomeStackParamList>>();
 
   const setDraggableData = useCallback(
     (data: Task[]) => {
@@ -50,12 +56,20 @@ const TaskList: React.FC<TaskListProps> = props => {
     setDraggableData(props.data);
   }, [props.data, setDraggableData]);
 
+  const onTaskPress = useCallback(
+    (task: Task) => {
+      navigation.navigate(SCREEN_NAME.ADD_TASK, { task });
+    },
+    [navigation],
+  );
+
   const renderItem = useCallback(
     ({ item, drag, isActive }: RenderItemParams<Task>) => {
       return (
         <TouchableOpacity
           activeOpacity={1}
           style={styles.card}
+          onPress={() => onTaskPress(item)}
           disabled={isActive}
           onLongPress={drag}>
           <TaskCard
@@ -66,7 +80,7 @@ const TaskList: React.FC<TaskListProps> = props => {
         </TouchableOpacity>
       );
     },
-    [removeTask, onCheckTask],
+    [removeTask, onCheckTask, onTaskPress],
   );
 
   return (

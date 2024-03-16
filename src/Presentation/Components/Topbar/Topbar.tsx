@@ -1,5 +1,5 @@
 import { AddCircle } from 'iconsax-react-native';
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styles from './styles';
@@ -7,19 +7,19 @@ import useTheme from '../../../Hook/useTheme';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { SCREEN_NAME } from '../../../Enum/Screens';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { taskSelector } from '../../../Store/Slice/TaskSlice';
+import { useSelector } from 'react-redux';
 
-interface TopbarProps extends NativeStackHeaderProps {
-  taskCount?: number;
-  completedTaskCount?: number;
-}
-
-const Topbar: React.FC<TopbarProps> = ({
-  taskCount = 0,
-  completedTaskCount = 0,
-  navigation,
-}) => {
+const Topbar: React.FC<NativeStackHeaderProps> = ({ navigation }) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
+  const { taskList } = useSelector(taskSelector);
+
+  const completedTaskCount = useMemo(
+    () => taskList.filter(task => task.isChecked).length,
+    [taskList],
+  );
+  const taskCount = useMemo(() => taskList.length, [taskList]);
 
   const onAddPress = useCallback(() => {
     navigation.navigate(SCREEN_NAME.ADD_TASK);

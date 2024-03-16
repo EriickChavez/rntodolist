@@ -19,10 +19,13 @@ const Navigation: React.FC<NavigationProps> = ({ theme }) => {
           name={SCREEN_NAME.HOME}
           component={HomeScreen}
         />
-        <HomeStack.Screen
-          name={SCREEN_NAME.ADD_TASK}
-          component={AddTaskScreen}
-        />
+        <HomeStack.Group screenOptions={{ presentation: 'modal' }}>
+          <HomeStack.Screen
+            options={{ headerShown: false }}
+            name={SCREEN_NAME.ADD_TASK}
+            component={AddTaskScreen}
+          />
+        </HomeStack.Group>
       </HomeStack.Navigator>
     </NavigationContainer>
   );
