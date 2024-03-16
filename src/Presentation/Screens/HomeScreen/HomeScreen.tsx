@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, SafeAreaView } from 'react-native';
-import styles from './styles';
 import useTheme from '../../../Hook/useTheme';
 import { HomeScreenNavigationProps } from '../../../@Types/navigation';
 import TaskList from '../../Components/TaskList/TaskList';
 import { useSelector } from 'react-redux';
 import { taskSelector } from '../../../Store/Slice/TaskSlice';
+import styles from './Styles';
 
 const HomeScreen: React.FC<HomeScreenNavigationProps> = ({}) => {
   const { taskList } = useSelector(taskSelector);
