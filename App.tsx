@@ -4,6 +4,7 @@ import { Appearance, useColorScheme } from 'react-native';
 import { Theme } from '@react-navigation/native';
 import themes from './src/Themes/themes';
 import Navigation from './src/Navigation/Navigation';
+import AppProvider from './src/AppProviders';
 
 interface AppProps {}
 
@@ -28,7 +29,11 @@ const App: React.FC<AppProps> = ({}) => {
     return () => subscription.remove();
   }, []);
 
-  return <Navigation theme={appTheme} />;
+  return (
+    <AppProvider>
+      <Navigation theme={appTheme} />
+    </AppProvider>
+  );
 };
 
 export default App;
