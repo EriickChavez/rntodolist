@@ -12,6 +12,14 @@ export default StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
   },
+  cardChecked: {
+    borderWidth: 2,
+    borderColor: '#81C784',
+  },
+  cardNotChecked: {
+    borderWidth: 2,
+    borderColor: '#28BEF5',
+  },
   row: {
     flex: 1,
     flexDirection: 'row',
@@ -24,35 +32,11 @@ export default StyleSheet.create({
     marginRight: 10,
   },
   indicator: {
-    width: 5,
+    width: 7,
     position: 'absolute',
     left: 0,
     top: 0,
     bottom: 0,
-  },
-  shadowsSuccess: {
-    borderWidth: 2,
-    borderColor: '#81C784',
-    shadowColor: '#81C784',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  shadows: {
-    borderWidth: 2,
-    borderColor: '#28BEF5',
-    shadowColor: '#080708',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
   title: {
     fontSize: RFValue(12),

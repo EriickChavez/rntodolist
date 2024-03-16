@@ -1,11 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   SafeAreaView,
-  KeyboardAvoidingView,
-  Platform,
   TouchableOpacity,
   Alert,
 } from 'react-native';
@@ -14,6 +12,8 @@ import useTheme from '../../../Hook/useTheme';
 import { useDispatch } from 'react-redux';
 import TaskSlice from '../../../Store/Slice/TaskSlice';
 import { AddTaskScreenNavigationProps } from '../../../@Types/navigation';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+import { SCREEN_TITLE } from '../../../Enum/Screens';
 
 const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
   navigation,
@@ -66,12 +66,21 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
     setDesc(value);
   };
 
+  useEffect(() => {
+    if (route.params?.task) {
+      navigation.setOptions({
+        title: SCREEN_TITLE.EDIT_TASK,
+      });
+    } else {
+      navigation.setOptions({
+        title: SCREEN_TITLE.ADD_TASK,
+      });
+    }
+  }, [navigation, route.params?.task]);
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Add new Task</Text>
-        </View>
         <View>
           <View style={styles.inputContainer}>
             <View style={styles.inputLabel}>
@@ -100,9 +109,10 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
             />
           </View>
         </View>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-          style={[styles.container, styles.inputContainer]}>
+        <KeyboardAwareScrollView
+          testID="aware_scroll_view_container"
+          disableScrollOnKeyboardHide={true}
+          contentContainerStyle={styles.container}>
           <View style={styles.textAreaContainer}>
             <View style={styles.inputLabel}>
               <Text
@@ -116,41 +126,42 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
               multiline
               onChangeText={onChangeDesc}
               value={desc}
+              numberOfLines={100}
               placeholderTextColor={'gray'}
-              returnKeyType="done"
             />
           </View>
-        </KeyboardAvoidingView>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={handleCancel}
-            style={[
-              styles.button,
-              styles.buttonCancel,
-              {
-                borderColor: theme.colors.subtext,
-                backgroundColor: theme.colors.background,
-              },
-            ]}>
-            <Text style={[styles.buttonText, { color: theme.colors.subtext }]}>
-              Cancelar
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleSave}
-            activeOpacity={0.8}
-            style={[
-              styles.button,
-              styles.buttonConfirm,
-              { backgroundColor: theme.colors.success },
-            ]}>
-            <Text
-              style={[styles.buttonText, { color: theme.colors.background }]}>
-              Save
-            </Text>
-          </TouchableOpacity>
-        </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={handleCancel}
+              style={[
+                styles.button,
+                styles.buttonCancel,
+                {
+                  borderColor: theme.colors.subtext,
+                  backgroundColor: theme.colors.background,
+                },
+              ]}>
+              <Text
+                style={[styles.buttonText, { color: theme.colors.subtext }]}>
+                Cancelar
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleSave}
+              activeOpacity={0.8}
+              style={[
+                styles.button,
+                styles.buttonConfirm,
+                { backgroundColor: theme.colors.success },
+              ]}>
+              <Text
+                style={[styles.buttonText, { color: theme.colors.background }]}>
+                Save
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAwareScrollView>
       </View>
     </SafeAreaView>
   );

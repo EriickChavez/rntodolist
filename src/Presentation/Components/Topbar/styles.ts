@@ -8,6 +8,10 @@ export default StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  backButton: {
+    marginRight: 10,
   },
   title: {
     fontSize: RFValue(20),

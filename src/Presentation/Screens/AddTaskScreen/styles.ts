@@ -15,10 +15,9 @@ export default StyleSheet.create({
   title: {
     fontSize: RFValue(20),
   },
-  inputContainer: {
-    marginTop: 20,
-  },
+  inputContainer: {},
   input: {
+    marginTop: 5,
     fontSize: RFValue(15),
     borderWidth: 1,
     borderRadius: 5,
@@ -40,10 +39,13 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   textAreaContainer: {
+    marginTop: 10,
     flex: 1,
   },
   textArea: {
     flex: 1,
+    textAlignVertical: 'top',
+    paddingTop: 10,
   },
 
   buttonContainer: {

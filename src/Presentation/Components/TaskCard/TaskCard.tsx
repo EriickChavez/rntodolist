@@ -18,6 +18,8 @@ const TaskCard: React.FC<TaskCardProps> = ({
   onDeleteTask = () => {},
   onCheckTask = () => {},
 }) => {
+  const theme = useTheme();
+
   const changeStatus = () => {
     const taskUpdated: Task = { ...task, isChecked: !task.isChecked };
     onCheckTask(taskUpdated);
@@ -38,13 +40,11 @@ const TaskCard: React.FC<TaskCardProps> = ({
     ]);
   }, [task, onDeleteTask]);
 
-  const theme = useTheme();
-
   return (
     <View
       style={[
         styles.card,
-        task.isChecked ? styles.shadowsSuccess : styles.shadows,
+        task.isChecked ? styles.cardChecked : styles.cardNotChecked,
         {
           backgroundColor: theme.colors.background,
         },
