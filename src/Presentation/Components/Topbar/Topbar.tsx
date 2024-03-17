@@ -62,6 +62,10 @@ const Topbar: React.FC<NativeStackHeaderProps> = ({
     );
   }, [navigation, theme.colors.text]);
 
+  const isTasksCompleted = useMemo(() => {
+    return completedTaskCount === taskCount && taskCount > 0;
+  }, [completedTaskCount, taskCount]);
+
   return (
     <View
       style={[
@@ -86,10 +90,9 @@ const Topbar: React.FC<NativeStackHeaderProps> = ({
           style={[
             styles.taskCount,
             {
-              color:
-                completedTaskCount === taskCount
-                  ? theme.colors.success
-                  : theme.colors.subtext,
+              color: isTasksCompleted
+                ? theme.colors.success
+                : theme.colors.subtext,
             },
           ]}>
           ({completedTaskCount}/{taskCount}){' '}
