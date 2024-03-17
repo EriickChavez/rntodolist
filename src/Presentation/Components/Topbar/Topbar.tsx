@@ -9,6 +9,7 @@ import { SCREEN_NAME, SCREEN_TITLE } from '../../../Enum/Screens';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { taskSelector } from '../../../Store/Slice/TaskSlice';
 import { useSelector } from 'react-redux';
+import LocalizationService from '../../../Utils/LocalizationService';
 
 const Topbar: React.FC<NativeStackHeaderProps> = ({
   navigation,
@@ -31,16 +32,17 @@ const Topbar: React.FC<NativeStackHeaderProps> = ({
 
   const paddingTop = Platform.OS === 'ios' ? insets.top : insets.top * 2;
 
+  const isHomeScreen = useMemo(() => route.name === SCREEN_NAME.HOME, [route]);
+
   const headerTitle = useMemo(() => {
-    if (route.name === SCREEN_NAME.HOME) {
-      return SCREEN_TITLE.HOME;
-    }
-    if (options.title === SCREEN_TITLE.ADD_TASK) {
-      return SCREEN_TITLE.ADD_TASK;
+    if (isHomeScreen) {
+      return LocalizationService.home.titleScreen;
+    } else if (options.title === SCREEN_TITLE.ADD_TASK) {
+      return LocalizationService.addTask.titleAddScreen;
     } else {
-      return SCREEN_TITLE.EDIT_TASK;
+      return LocalizationService.addTask.titleEditScreen;
     }
-  }, [route, options.title]);
+  }, [options.title, isHomeScreen]);
 
   const showProgress = useMemo(() => {
     return route.name === SCREEN_NAME.HOME;
@@ -73,9 +75,11 @@ const Topbar: React.FC<NativeStackHeaderProps> = ({
             {headerTitle}
           </Text>
         </View>
-        <TouchableOpacity onPress={onAddPress}>
-          <AddCircle size={RFValue(18)} color={theme.colors.text} />
-        </TouchableOpacity>
+        {isHomeScreen && (
+          <TouchableOpacity onPress={onAddPress}>
+            <AddCircle size={RFValue(18)} color={theme.colors.text} />
+          </TouchableOpacity>
+        )}
       </View>
       {showProgress && (
         <Text
@@ -88,7 +92,8 @@ const Topbar: React.FC<NativeStackHeaderProps> = ({
                   : theme.colors.subtext,
             },
           ]}>
-          ({completedTaskCount}/{taskCount}) Completed Tasks
+          ({completedTaskCount}/{taskCount}){' '}
+          {LocalizationService.home.completedTasks}
         </Text>
       )}
     </View>

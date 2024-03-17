@@ -6,6 +6,7 @@ import { Task } from '../../../@Types/tasks';
 import useTheme from '../../../Hook/useTheme';
 import { hexToRgba } from '../../../Utils/ColorUtils';
 import { RFValue } from 'react-native-responsive-fontsize';
+import LocalizationService from '../../../Utils/LocalizationService';
 
 interface TaskCardProps {
   task: Task;
@@ -26,18 +27,22 @@ const TaskCard: React.FC<TaskCardProps> = ({
   };
 
   const deleteTask = useCallback(() => {
-    Alert.alert('Delete task', 'Are you sure you want to delete this task?', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        onPress: () => onDeleteTask(task.id),
-        style: 'default',
-      },
-    ]);
+    Alert.alert(
+      LocalizationService.home.error.error,
+      LocalizationService.home.error.title,
+      [
+        {
+          text: LocalizationService.button.cancel,
+          onPress: () => {},
+          style: 'cancel',
+        },
+        {
+          text: LocalizationService.button.delete,
+          onPress: () => onDeleteTask(task.id),
+          style: 'default',
+        },
+      ],
+    );
   }, [task, onDeleteTask]);
 
   return (

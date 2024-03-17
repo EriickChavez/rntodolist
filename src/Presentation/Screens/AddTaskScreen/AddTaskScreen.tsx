@@ -14,16 +14,31 @@ import TaskSlice from '../../../Store/Slice/TaskSlice';
 import { AddTaskScreenNavigationProps } from '../../../@Types/navigation';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { SCREEN_TITLE } from '../../../Enum/Screens';
+import LocalizationService from '../../../Utils/LocalizationService';
+import { MAX_CHARS } from '../../../Constants/Constants';
 
 const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
   navigation,
   route,
 }) => {
   const theme = useTheme();
+
   const [title, setTitle] = useState(route.params?.task?.title || '');
   const [desc, setDesc] = useState(route.params?.task?.description || '');
   const isValid = useMemo(() => title.length > 0, [title]);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (route.params?.task) {
+      navigation.setOptions({
+        title: SCREEN_TITLE.EDIT_TASK,
+      });
+    } else {
+      navigation.setOptions({
+        title: SCREEN_TITLE.ADD_TASK,
+      });
+    }
+  }, [navigation, route.params?.task]);
 
   const handleCancel = useCallback(() => {
     navigation.goBack();
@@ -31,7 +46,10 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
 
   const handleSave = useCallback(() => {
     if (!isValid) {
-      Alert.alert('Error', 'Title cannot be empty');
+      Alert.alert(
+        LocalizationService.addTask.error.error,
+        LocalizationService.addTask.error.title,
+      );
       return;
     }
     if (!route.params?.task) {
@@ -66,18 +84,6 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
     setDesc(value);
   };
 
-  useEffect(() => {
-    if (route.params?.task) {
-      navigation.setOptions({
-        title: SCREEN_TITLE.EDIT_TASK,
-      });
-    } else {
-      navigation.setOptions({
-        title: SCREEN_TITLE.ADD_TASK,
-      });
-    }
-  }, [navigation, route.params?.task]);
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
@@ -86,7 +92,7 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
             <View style={styles.inputLabel}>
               <Text
                 style={[styles.inputLabelText, { color: theme.colors.text }]}>
-                Title
+                {LocalizationService.addTask.titleInput}
               </Text>
               <Text
                 style={[styles.inputLabelText, { color: theme.colors.danger }]}>
@@ -95,14 +101,21 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
               <Text
                 style={[
                   styles.inputLabelCount,
-                  { color: theme.colors.subtext },
+
+                  {
+                    color:
+                      title.length === MAX_CHARS
+                        ? theme.colors.danger
+                        : theme.colors.subtext,
+                  },
                 ]}>
-                (0/100)
+                ({title.length}/{MAX_CHARS})
               </Text>
             </View>
             <TextInput
               style={styles.input}
-              placeholder="Task"
+              placeholder={LocalizationService.addTask.titleInputPlaceholder}
+              maxLength={MAX_CHARS}
               placeholderTextColor={'gray'}
               onChangeText={onChangeTitle}
               value={title}
@@ -110,19 +123,20 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
           </View>
         </View>
         <KeyboardAwareScrollView
-          testID="aware_scroll_view_container"
           disableScrollOnKeyboardHide={true}
           contentContainerStyle={styles.container}>
           <View style={styles.textAreaContainer}>
             <View style={styles.inputLabel}>
               <Text
                 style={[styles.inputLabelText, { color: theme.colors.text }]}>
-                Description
+                {LocalizationService.addTask.descriptionInput}
               </Text>
             </View>
             <TextInput
               style={[styles.input, styles.textArea]}
-              placeholder="Task"
+              placeholder={
+                LocalizationService.addTask.descriptionInputPlaceholder
+              }
               multiline
               onChangeText={onChangeDesc}
               value={desc}
@@ -144,7 +158,7 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
               ]}>
               <Text
                 style={[styles.buttonText, { color: theme.colors.subtext }]}>
-                Cancelar
+                {LocalizationService.button.cancel}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -157,7 +171,7 @@ const AddTaskScreen: React.FC<AddTaskScreenNavigationProps> = ({
               ]}>
               <Text
                 style={[styles.buttonText, { color: theme.colors.background }]}>
-                Save
+                {LocalizationService.button.save}
               </Text>
             </TouchableOpacity>
           </View>
