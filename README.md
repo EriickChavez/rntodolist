@@ -30,6 +30,8 @@ Users Can Delete Tasks
 
 ---
 
+### To start developing with React Native, you'll need to set up your development environment. Follow the instructions in the [official React Native documentation](https://reactnative.dev/docs/environment-setup) to configure your development environment
+
 ## Installation and Execution of the To-Do List Project
 
 Here are the necessary instructions for cloning, installing, and running the project.

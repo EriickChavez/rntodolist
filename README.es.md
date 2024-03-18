@@ -30,6 +30,8 @@ Esta aplicación cuenta con soporte para los idiomas inglés y español.
 
 ---
 
+### Para comenzar a desarrollar con React Native, necesitarás configurar tu entorno de desarrollo. Sigue las instrucciones en la [documentación oficial de React Native](https://reactnative.dev/docs/environment-setup) para configurar tu entorno de desarrollo.
+
 ## Instalación y ejecución del proyecto de la lista de tareas
 
 Aquí están las instrucciones necesarias para clonar, instalar y ejecutar el proyecto.
