@@ -28,4 +28,8 @@ export default {
     delete: 'Delete',
     save: 'Save',
   },
+  empty: {
+    title: 'Empty List',
+    subtext: 'You have no tasks at this moment',
+  },
 };

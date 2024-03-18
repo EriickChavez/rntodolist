@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import styles from './styles';
 import { LOTTIES } from '../../../Constants/Constants';
 import useTheme from '../../../Hook/useTheme';
+import LocalizationService from '../../../Utils/LocalizationService';
 
 interface EmptyTaskListProps {}
 
@@ -21,10 +22,10 @@ const EmptyTaskList: React.FC<EmptyTaskListProps> = ({}) => {
       />
       <View style={styles.textContainer}>
         <Text style={[styles.text, { color: themes.colors.text }]}>
-          Empty List
+          {LocalizationService.empty.title}
         </Text>
         <Text style={[styles.subtext, { color: themes.colors.subtext }]}>
-          You have no item at this moment
+          {LocalizationService.empty.subtext}
         </Text>
       </View>
     </View>

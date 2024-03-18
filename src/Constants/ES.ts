@@ -28,4 +28,8 @@ export default {
     delete: 'Eliminar',
     save: 'Guardar',
   },
+  empty: {
+    title: 'Lista de Tareas Vacia',
+    subtext: 'No hay tareas para mostrar',
+  },
 };
