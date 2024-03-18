@@ -1,79 +1,98 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# TaskTrack
 
-# Getting Started
+### [Spanish Documentation](./README.es.md)
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+---
 
-## Step 1: Start the Metro Server
+### Description
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+This is a to-do list application that allows users to add, mark as complete, and delete tasks.
+This application provides support for both English and Spanish languages.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+![HomeScreen-Empty](screenshots/HomeScreen-empty.png)
+![HomeScreen-Tasks](screenshots/HomeScreen-tasks.png)
+
+### Users Can Add/Edit Tasks
+
+![addTask](screenshots/addTask.gif)
+
+### Users Can Edit Tasks
+
+![editTask](screenshots/editTask.gif)
+
+Users Can Mark Tasks as Completed
+
+![completeTask](screenshots/completeTask.gif)
+
+Users Can Delete Tasks
+
+![deleteTask](screenshots/deleteTask.gif)
+
+---
+
+## Installation and Execution of the To-Do List Project
+
+Here are the necessary instructions for cloning, installing, and running the project.
+
+### Step 1: Clone the Repository
+
+First, you need to clone the repository from GitHub. Open your terminal and enter the following command:
 
 ```bash
-# using npm
-npm start
+git clone https://github.com/EriickChavez/rntodolist.git
+```
 
-# OR using Yarn
+### Step 2: Navigate to the Directory
+
+After cloning the repository, navigate to the project directory with the following command:
+
+```bash
+cd rntodolist
+```
+
+### Step 3: Install Dependencies
+
+While inside the project directory, you can install the dependencies with the following command:
+
+```bash
+yarn install
+```
+
+### Step 3.1: Install Pods for iOS (if applicable)
+
+For iOS, you must first install the pods using the following command:
+
+```bash
+npx pod-install
+```
+
+Alternatively, you can use the following command:
+
+```bash
+cd ios && pod install && cd ..
+```
+
+### Step 4: Run the Application
+
+Once all dependencies are installed, you can run the project.
+
+### Step 4.1: Run Metro
+
+```bash
 yarn start
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+If you are developing on a Mac and want to run the application in an iOS simulator you can use the following command:
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+react-native run-ios --simulator="iPhone 15 Pro Max"
 ```
 
-### For iOS
+If you prefer to run the application on an Android device or emulator, you can use the following command:
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+react-native run-android
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+If you encounter issues with Android
+You can execute the command adb reverse tcp:8081 tcp:8081 to ensure that the application can be accessed from the device.
