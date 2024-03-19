@@ -2,37 +2,11 @@
 
 ### [Spanish Documentation](./README.es.md)
 
----
-
-### Description
-
-This is a to-do list application that allows users to add, mark as complete, and delete tasks.
-This application provides support for both English and Spanish languages.
-
-![HomeScreen-Empty](screenshots/HomeScreen-empty.png)
-![HomeScreen-Tasks](screenshots/HomeScreen-tasks.png)
-
-### Users Can Add/Edit Tasks
-
-![addTask](screenshots/addTask.gif)
-
-### Users Can Edit Tasks
-
-![editTask](screenshots/editTask.gif)
-
-Users Can Mark Tasks as Completed
-
-![completeTask](screenshots/completeTask.gif)
-
-Users Can Delete Tasks
-
-![deleteTask](screenshots/deleteTask.gif)
-
----
-
 ### To start developing with React Native, you'll need to set up your development environment. Follow the instructions in the [official React Native documentation](https://reactnative.dev/docs/environment-setup) to configure your development environment
 
-## Installation and Execution of the To-Do List Project
+---
+
+## Installation and Execution of the rntodolist List Project
 
 Here are the necessary instructions for cloning, installing, and running the project.
 
@@ -98,3 +72,29 @@ react-native run-android
 
 If you encounter issues with Android
 You can execute the command adb reverse tcp:8081 tcp:8081 to ensure that the application can be accessed from the device.
+
+---
+
+### Description
+
+This is a to-do list application that allows users to add, mark as complete, and delete tasks.
+This application provides support for both English and Spanish languages.
+
+![HomeScreen-Empty](screenshots/HomeScreen-empty.png)
+![HomeScreen-Tasks](screenshots/HomeScreen-tasks.png)
+
+### Users Can Add/Edit Tasks
+
+![addTask](screenshots/addTask.gif)
+
+### Users Can Edit Tasks
+
+![editTask](screenshots/editTask.gif)
+
+Users Can Mark Tasks as Completed
+
+![completeTask](screenshots/completeTask.gif)
+
+Users Can Delete Tasks
+
+![deleteTask](screenshots/deleteTask.gif)

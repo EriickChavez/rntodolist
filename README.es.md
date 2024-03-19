@@ -2,34 +2,6 @@
 
 ### [English Documentation](./README.md)
 
----
-
-### Descripción
-
-Esta es una aplicación de lista de tareas que permite a los usuarios agregar, marcar como completadas y eliminar tareas.
-Esta aplicación cuenta con soporte para los idiomas inglés y español.
-
-![HomeScreen-Empty](screenshots/HomeScreen-empty.png)
-![HomeScreen-Tasks](screenshots/HomeScreen-tasks.png)
-
-### Puede Agregar/Editar tareas
-
-![addTask](screenshots/addTask.gif)
-
-### Puede Editar tareas
-
-![editTask](screenshots/editTask.gif)
-
-### Puede marcar como completadas
-
-![completeTask](screenshots/completeTask.gif)
-
-### Puede eliminar tareas
-
-![deleteTask](screenshots/deleteTask.gif)
-
----
-
 ### Para comenzar a desarrollar con React Native, necesitarás configurar tu entorno de desarrollo. Sigue las instrucciones en la [documentación oficial de React Native](https://reactnative.dev/docs/environment-setup) para configurar tu entorno de desarrollo.
 
 ## Instalación y ejecución del proyecto de la lista de tareas
@@ -99,3 +71,29 @@ react-native run-android
 ### En caso de tener problemas con android
 
 Puedes ejecutar el comando `adb reverse tcp:8081 tcp:8081` para que la aplicación se pueda acceder desde el dispositivo.
+
+---
+
+### Descripción
+
+Esta es una aplicación de lista de tareas que permite a los usuarios agregar, marcar como completadas y eliminar tareas.
+Esta aplicación cuenta con soporte para los idiomas inglés y español.
+
+![HomeScreen-Empty](screenshots/HomeScreen-empty.png)
+![HomeScreen-Tasks](screenshots/HomeScreen-tasks.png)
+
+### Puede Agregar/Editar tareas
+
+![addTask](screenshots/addTask.gif)
+
+### Puede Editar tareas
+
+![editTask](screenshots/editTask.gif)
+
+### Puede marcar como completadas
+
+![completeTask](screenshots/completeTask.gif)
+
+### Puede eliminar tareas
+
+![deleteTask](screenshots/deleteTask.gif)
